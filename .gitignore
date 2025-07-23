@@ -1,0 +1,219 @@
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+*.swp
+*.swo
+
+# --- Archivos temporales / de backup ---
+*.bak
+*.tmp
+*.temp
+*~
+*.log
+
+# --- Archivos de compilación ---
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.class
+*.pyc
+*.pyo
+*.out
+*.a
+*.lib
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.venv
+venv/
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+
+# --- Rust ---
+target/
+Cargo.lock
+
+# --- Go ---
+bin/
+pkg/
+*.exe
+*.test
+*.out
+
+# --- Java ---
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+
+# --- C/C++ ---
+*.dSYM/
+*.gcno
+*.gcda
+*.gcov
+*.gch
+*.pch
+build/
+cmake-build-*/
+
+# --- C# / .NET ---
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+*.pdb
+*.mdb
+
+# --- Haskell / Stack ---
+.stack-work/
+dist/
+dist-newstyle/
+cabal.project.local
+*.hi
+*.o
+
+# --- PHP ---
+vendor/
+
+# --- Ruby ---
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+log/
+tmp/
+.yardoc/
+_yardoc/
+coverage/
+
+# --- Lua ---
+*.luac
+
+# --- Julia ---
+*.jl.cov
+*.jl.*
+.julia/
+
+# --- R ---
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.Ruserdata
+
+# --- Common IDEs and Editors ---
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+*.nb-gradle/
+
+# --- Docker ---
+*.pid
+*.pid.lock
+*.sock
+docker-compose.override.yml
+.env.docker
+docker-compose*.yml
+
+# --- Terraform ---
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# --- Kubernetes ---
+*.kube/
+*.minikube/
+
+# --- Logs ---
+*.log
+log/
+logs/
+*.log.*
+
+# --- Misc ---
+.env
+.secret
+*.key
+*.pem
+*.crt
+*.cfg
+*.conf
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.h5
+*.ipynb_checkpoints
+*.mypy_cache/
+*.pytest_cache/
+*.coverage
+
+# --- LaTeX ---
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# --- Backup / system files ---
+*.bak
+*.tmp
+*.old
+*.orig
+*.rej
+
+# --- Archives ---
+*.tar
+*.gz
+*.zip
+*.rar
+*.7z
+*.xz
+*.tgz
+
+# --- VS Code ---
+.history/
+.vscode/
+
+# --- JetBrains ---
+.idea/
+*.iws
+*.ipr
+*.iml
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
