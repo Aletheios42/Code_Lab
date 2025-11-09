@@ -1,8 +1,6 @@
+#include "vec3.h"
 #include <math.h>
-
-typedef struct s_vec3 {
-    double coor[3];
-} t_vec3;
+#include <stdio.h>
 
 t_vec3 vec3_init(double x, double y, double z) {
     t_vec3 v;
@@ -68,6 +66,15 @@ t_vec3 vec3_divide_scalar(t_vec3 v1, double scalar) {
     return result;
 }
 
+t_vec3 vec3_scale(t_vec3 v1, double scalar) {
+    t_vec3 result;
+
+    result.coor[0] =  v1.coor[0] * scalar;
+    result.coor[1] =  v1.coor[1] * scalar;
+    result.coor[2] =  v1.coor[2] * scalar;
+    return result;
+}
+
 double vec3_lenght(t_vec3 v) {
     double result;
 
@@ -93,4 +100,12 @@ t_vec3 vec3_normalize(t_vec3 v) {
     else
         result = vec3_init(0,0,0);
     return result;
+}
+
+double vec3_dot(t_vec3 v1, t_vec3 v2) {
+    double result;
+
+    result = v1.coor[0] * v2.coor[0] + v1.coor[1] * v2.coor[1] + v1.coor[2] * v2.coor[2];
+    return result;
+
 }
