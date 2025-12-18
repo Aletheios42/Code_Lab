@@ -18,16 +18,23 @@ int main(int ac, char **av) {
    printf("Conection was succesful\n");
 
  // petición
- char *msg;
- msg = "GET / HTTP/1.1\r\nHost:google.com\r\n\r\n";
- send(clientSocketFD, msg, strlen(msg), 0);
-// respuesta
- char buffer[1024];
- recv(clientSocketFD, buffer, 1024, 0);
- printf("Response was: %s\n", buffer);
+ char *line = NULL;
+ size_t lineSize = 0;
+ printf("Type your msg..\n");
 
- //free(clientAddress);
- //close(clientSocketFD);
+ while (42) {
+
+   ssize_t charCount = getline(&line, &lineSize, stdin);
+   if (charCount > 0) {
+
+     if (strcmp(line, "exit\n") == 0)
+       break;
+     ssize_t amountWasSent = send(clientSocketFD, line, charCount, 0);
+   }
+ }
+
+ close(clientSocketFD);
+ free(clientAddress);
 
   return 0;
 }

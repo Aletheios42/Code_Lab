@@ -2,7 +2,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-struct sockaddr_in * sockaddr_in(char *ip, int port){
+struct sockaddr_in * sockaddr_in(char *ip, int port) {
 
   struct sockaddr_in *address = malloc(sizeof(struct sockaddr_in));
   address->sin_family = AF_INET;
@@ -15,3 +15,4 @@ struct sockaddr_in * sockaddr_in(char *ip, int port){
 
   return address;
 }
+
