@@ -5,7 +5,7 @@ t_camera camera_init(int image_width, int image_height) {
     
     cam.origin = vec3_init(0,0,0);
     cam.focal_length = 1;
-    cam.viewport_ratio = 1.0 / 10.0;
+    cam.viewport_ratio = 1.0 / 1.0;
     cam.viewport_height = 1.0;
     cam.viewport_width = cam.viewport_height / cam.viewport_ratio;
 

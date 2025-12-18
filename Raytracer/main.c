@@ -1,9 +1,11 @@
 #include "vec3.h"
 #include "ray.h"
 #include "camera.h"
+#include "sphere.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 
 void write_color(FILE *out, t_vec3 pixel_color) {
     double r = vec3_get(&pixel_color, 0);
@@ -50,6 +52,7 @@ int main() {
 
     fprintf(image.outfile, "P3\n");
     fprintf(image.outfile, "%d %d\n", image.width, image.height );
+    // para el formato ppm
     fprintf(image.outfile, "%d\n", image.color);
 
 

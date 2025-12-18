@@ -1,6 +1,5 @@
 #include "vec3.h"
 #include <math.h>
-#include <stdio.h>
 
 t_vec3 vec3_init(double x, double y, double z) {
     t_vec3 v;
@@ -35,7 +34,7 @@ t_vec3 vec3_subtract(t_vec3 v1, t_vec3 v2) {
     return result;
 }
 
-t_vec3 vec3_multuply(t_vec3 v1, t_vec3 v2) {
+t_vec3 vec3_multiply(t_vec3 v1, t_vec3 v2) {
     t_vec3 result;
 
     result.coor[0] = v1.coor[0] * v2.coor[0];

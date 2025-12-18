@@ -1,4 +1,5 @@
 #include "ray.h"
+#include "sphere.h"
 
 t_ray ray_init() {
     t_ray ray;
@@ -26,7 +27,12 @@ t_ray ray_create(t_vec3 origin, t_vec3 dir) {
     return ray;
 }
 
+// pinta un degradado azul blanco, imitando el cielo, con un circulo rojo
+// en mitad
 t_vec3 ray_color(t_ray *r) {
+    if (hit_sphere(vec3_init(0,0,-1), 0.5, *r))
+        return vec3_init(1, 0, 0);
+
     t_vec3 unit_direction = vec3_normalize(r->dir);
     double a = 0.5 * (vec3_get(&unit_direction, 1) + 1.0);
     

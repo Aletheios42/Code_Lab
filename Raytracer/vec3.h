@@ -1,19 +1,8 @@
 #ifndef VEC3_H
 #define VEC3_H
 
-#include <stdio.h>
+#include "structs.h"
 #include <math.h>
-
-typedef struct s_image {
-    int width;
-    int height;
-    int color;
-    FILE *outfile;
-} t_image;
-    
-typedef struct s_vec3 {
-    double coor[3];
-} t_vec3;
 
 t_vec3 vec3_init(double x, double y, double z);
 double vec3_get(t_vec3 *v, int index);

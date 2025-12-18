@@ -2,17 +2,20 @@ NAME = raycaster
 
 CC = gcc
 
-CFLAGS = -Wall
+CFLAGS = -Wall -Werror
 CFLAGS += -g3 -fsanitize=address
 
 SRC = main.c	\
       vec3.c	\
       ray.c		\
-	  camera.c
+	  camera.c	\
+	  sphere.c
+
 
 INCLUDES = vec3.h	\
 		   ray.h	\
-		   camera.h
+		   camera.h	\
+		   sphere.h
 
 LINKER = -lm
 
