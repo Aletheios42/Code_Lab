@@ -1,23 +1,19 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <pthread.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
+#include "utils.h"
 
-struct AcceptedSocket* acceptIncomingConnection(int serverSocketFD);
-struct sockaddr_in * sockaddr_in(char *ip, int port);
-void recieveAndPrintIncomingDataOnSeparateThread(struct AcceptedSocket* clientSocket);
-void *acceptNewConnectionAndRecieveAndPrintItsData(void *data);
-void  *recieveAndPrintIncomingData(void *data);
+struct AcceptedSocket acceptedSockets[10];
+int acceptedSocketsCount = 0;
 
-struct AcceptedSocket {
-  int acceptedSocketFD;
-  struct sockaddr_in address;
-  int error;
-  bool acceptedSuccesfully;
-};
+void   sendRecievedMessageToOtherClients(char *buffer, int socketFD)
+{
+  for (int i = 0; i < acceptedSocketsCount; i++)
+  {
+    if (acceptedSockets[i].acceptedSocketFD != socketFD)
+    {
+      send(acceptedSockets[i].acceptedSocketFD, buffer, strlen(buffer), 0);
+    }
+  }
+
+}
 
 struct AcceptedSocket* acceptIncomingConnection(int serverSocketFD)
 {
@@ -39,20 +35,20 @@ struct AcceptedSocket* acceptIncomingConnection(int serverSocketFD)
 void  *recieveAndPrintIncomingData(void *data)
 {
   char buffer[1024];
-  int *socketFD;
+  int socketFD = (int)(long)data; // Cast directo del valor
 
-  socketFD = data;
   while (42)
   {
-    ssize_t amountRecieved = recv(*socketFD, buffer, 1024, 0);
+    ssize_t amountRecieved = recv(socketFD, buffer, 1024, 0);
     if (amountRecieved > 0) {
       buffer[amountRecieved] = 0;
       printf("Response was: %s", buffer);
+      sendRecievedMessageToOtherClients(buffer, socketFD);
     }
     if (amountRecieved == 0)
       break;
   }
-  close(*socketFD);
+  close(socketFD);
   return NULL;
 }
 
@@ -63,6 +59,7 @@ void startAccepttingIncomingConnections(int serverSocketFD)
   while (42)
   {
     clientSocket = acceptIncomingConnection(serverSocketFD);
+    acceptedSockets[acceptedSocketsCount++] = *clientSocket;
     recieveAndPrintIncomingDataOnSeparateThread(clientSocket);
   }
 }
@@ -71,9 +68,8 @@ void startAccepttingIncomingConnections(int serverSocketFD)
 void recieveAndPrintIncomingDataOnSeparateThread(struct AcceptedSocket* pSocket)
 {
   pthread_t id;
-  void *data = &pSocket->acceptedSocketFD;
 
-  pthread_create(&id, NULL, recieveAndPrintIncomingData, data);
+  pthread_create(&id, NULL, recieveAndPrintIncomingData, (void*)(long)pSocket->acceptedSocketFD);
 
 }
 

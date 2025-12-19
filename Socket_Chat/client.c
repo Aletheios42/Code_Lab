@@ -1,10 +1,30 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <arpa/inet.h>
+#include "utils.h"
 
-struct sockaddr_in * sockaddr_in(char *ip, int port);
+void *listenAndPrint(void *data)
+{
+  char buffer[1024];
+  int socketFD = (int)(long)data;
+
+  while (42)
+  {
+    ssize_t amountRecieved = recv(socketFD, buffer, 1024, 0);
+    if (amountRecieved > 0) {
+      buffer[amountRecieved] = 0;
+      printf("Response was: %s", buffer);
+    }
+    if (amountRecieved == 0)
+      break;
+  }
+  close(socketFD);
+  return NULL;
+}
+
+void  startListeningAndPrintMessagesOnNewThread(int clientSocketFD)
+{
+  pthread_t id;
+
+  pthread_create(&id, NULL, listenAndPrint, (void*)(long)clientSocketFD);
+}
 
 int main(int ac, char **av) {
 
@@ -22,6 +42,8 @@ int main(int ac, char **av) {
  size_t lineSize = 0;
  printf("Type your msg..\n");
 
+ startListeningAndPrintMessagesOnNewThread(clientSocketFD);
+
  while (42) {
 
    ssize_t charCount = getline(&line, &lineSize, stdin);
@@ -33,8 +55,8 @@ int main(int ac, char **av) {
    }
  }
 
- close(clientSocketFD);
  free(clientAddress);
+ close(clientSocketFD);
 
   return 0;
 }
