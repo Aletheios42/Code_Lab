@@ -42,7 +42,7 @@ void  *recieveAndPrintIncomingData(void *data)
     ssize_t amountRecieved = recv(socketFD, buffer, 1024, 0);
     if (amountRecieved > 0) {
       buffer[amountRecieved] = 0;
-      printf("Response was: %s", buffer);
+      printf("%s", buffer);
       sendRecievedMessageToOtherClients(buffer, socketFD);
     }
     if (amountRecieved == 0)
